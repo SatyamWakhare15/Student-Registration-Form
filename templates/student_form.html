@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Registration</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #6a89cc, #b8e994);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 60%;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+      
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2c3e50;
+      letter-spacing: 1px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 8px 0 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #38ada9;
+      outline: none;
+      background: #f1f2f6;
+    }
+    select{
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #38ada9;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #990707;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Student Registration</h2>
+
+    <form action="/submit" method="post">
+
+      <label>Name</label>
+      <input type="text" name="name" required>
+
+      <label>Address</label>
+      <input type="text" name="address" required>
+
+      <label>Standard</label>
+<select name="std" required>
+    <option value="">-- Select Standard --</option>
+    <option value="1st">1st Standard</option>
+    <option value="2nd">2nd Standard</option>
+    <option value="3rd">3rd Standard</option>
+    <option value="4th">4th Standard</option>
+    <option value="5th">5th Standard</option>
+    <option value="6th">6th Standard</option>
+    <option value="7th">7th Standard</option>
+    <option value="8th">8th Standard</option>
+    <option value="9th">9th Standard</option>
+    <option value="10th">10th Standard</option>
+</select>
+  
+      
+
+      <label>Date of Birth</label>
+      <input type="date" name="dob" id="dob" required>
+
+      <label>Age</label>
+      <input type="number" name="age" id="age" readonly required>
+
+      <label>Contact Number</label>
+      <input type="tel" name="contact" pattern="[0-9]{10}" placeholder="10-digit number" required>
+
+      <button type="submit" class="btn">Submit</button>
+    </form>
+
+  </div>
+
+  <script>
+    document.getElementById("dob").addEventListener("change", function () {
+        let dob = new Date(this.value);
+        let today = new Date();
+        let age = today.getFullYear() - dob.getFullYear();
+        let month = today.getMonth() - dob.getMonth();
+
+        if (month < 0 || (month === 0 && today.getDate() < dob.getDate())) {
+            age--;
+        }
+
+        document.getElementById("age").value = age;
+    });
+  </script>
+
+</body>
+</html>
